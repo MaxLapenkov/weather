@@ -1,0 +1,29 @@
+main{
+    text-align: center;
+}
+p{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.row{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.col {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.city{
+    font-size: 35px;
+}
+.desc {
+    font-size: 30px;
+}
+.temper{
+    font-size: 20px;
+}
