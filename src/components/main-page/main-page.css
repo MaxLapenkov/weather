@@ -1,12 +1,7 @@
 main{
     text-align: center;
 }
-p{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
+
 .row{
     display: flex;
     flex-direction: row;
