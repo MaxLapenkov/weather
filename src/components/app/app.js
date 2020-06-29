@@ -32,11 +32,18 @@ export default class App extends Component {
             return(
                 <div className="container">
                     <Header/>
-                    <MainPage weather={this.state.weather}/>
+                    <ErrorBoundary>
+                        <MainPage weather={this.state.weather}/>
+                    </ErrorBoundary>
                 </div>
             )
         } else {
-            return <Spinner/>
+            return (
+                <div className="container">
+                    <h1 className="alert">Пожалуйста, предоставьте данные о своём местоположении</h1>
+                    <Spinner/>
+                </div>
+            )
         }   
     }
 }
