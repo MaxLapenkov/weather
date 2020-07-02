@@ -8,7 +8,7 @@ const Header = () => {
         timezone: 'UTC',
       };
     let date = new Date();
-    date = date.toLocaleString("ru", options)
+    date = date.toLocaleString("ru", options);
     return (
         <header>
             <h1 className="visually-hidden">Погода в вашем регионе:</h1>
@@ -16,4 +16,4 @@ const Header = () => {
         </header>
     )
 }
-export default Header
+export default Header;

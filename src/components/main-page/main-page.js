@@ -1,11 +1,10 @@
-import React from 'react'
-import './main-page.css'
+import React from 'react';
+import './main-page.css';
 
 const MainPage = (weather) => {
     
     const data = weather.weather;
-    console.log(data);
-    const imageSrc = require(`../../icons/${data.weather[0].icon}.png`)
+    const imageSrc = require(`../../icons/${data.weather[0].icon}.png`);
     
     
     const kelvin = 273.15;
@@ -16,15 +15,15 @@ const MainPage = (weather) => {
     } else if (windDeg > 67 && windDeg <= 112) {
         wind = 'Восточный';
     } else if (windDeg > 112 && windDeg <= 157) {
-        wind = 'Юго-восточный'
+        wind = 'Юго-восточный';
     } else if (windDeg > 157 && windDeg <= 202) {
-        wind = 'Южный'
+        wind = 'Южный';
     } else if (windDeg > 202 && windDeg <= 247) {
-        wind = 'Юго-западный'
+        wind = 'Юго-западный';
     } else if (windDeg > 247 && windDeg <= 292) {
-        wind = 'Западный'
+        wind = 'Западный';
     } else if (windDeg > 292 && windDeg <= 337) {
-        wind = 'Северо-западный'
+        wind = 'Северо-западный';
     }
 
     
