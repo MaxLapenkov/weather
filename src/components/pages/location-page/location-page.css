@@ -1,0 +1,14 @@
+.location__place {
+    text-align: center;
+    font-size: 35px;
+}
+.location__header {
+    text-align: center;
+}
+.location__wiki {
+    margin-top: 20px;
+}
+.location__wiki-link {
+    font-weight: bold;
+    color: inherit;
+}

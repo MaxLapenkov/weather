@@ -2,9 +2,9 @@ import React, {Component} from 'react';
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import WeatherService from '../../services/weather-service';
 import WikiService from '../../services/wiki-service';
-import WeatherPage from '../weather-page';
-import TimePage from '../time-page';
-import LocationPage from '../location-page';
+import WeatherPage from '../pages/weather-page';
+import TimePage from '../pages/time-page';
+import LocationPage from '../pages/location-page';
 import Header from '../header';
 import Spinner from '../spinner';
 import ErrorBoundary from '../error-boundary';
@@ -14,12 +14,13 @@ export default class App extends Component {
     wikiService = new WikiService();
     getInfo(lat, lon) {
         if(lat > 0 && lon > 0) {
+            this.setState({loading: true});
             this.weatherService.getWeather(lat, lon).then((weather) => {
                 this.setState({
                     weather: weather
                 })
             }).then(() => {
-                this.wikiService.getWiki(this.state.weather.name).then((info) => {
+                this.wikiService.getWiki(`Город ${this.state.weather.name} в России`).then((info) => {
                     this.setState({
                         wiki: info
                     })
@@ -27,24 +28,25 @@ export default class App extends Component {
             })
         }
     }
+
     componentDidMount() {
         navigator.geolocation.getCurrentPosition((position) => {
-            const latitude = position.coords.latitude;
-            const longitude = position.coords.longitude;
-            if(latitude.length > 0 && longitude.length > 0) {
-                this.setState({loading: false})
-            }
-            this.getInfo(latitude, longitude);
-          })
-          
+                const latitude = position.coords.latitude;
+                const longitude = position.coords.longitude;
+                if(latitude.length > 0 && longitude.length > 0) {
+                    this.setState({loading: true})
+                }
+                this.getInfo(latitude, longitude);
+          }) 
     }
     state = {
         weather: undefined,
         wiki: undefined,
+        loading: false
     }
     render() {
-        const { weather, wiki } = this.state
-        if(weather && wiki) {
+        const { weather, wiki, loading } = this.state
+        if(weather && wiki && navigator.geolocation) {
             return(
                 <ErrorBoundary>
                     <Router>
@@ -67,10 +69,23 @@ export default class App extends Component {
                     </Router>
                 </ErrorBoundary>
             )
-        } else  {
+        } else if(loading) {
             return (
                 <div className="container">
-                    <h1 className="alert">Идет загрузка</h1>
+                    <h1 className="alert">Загрузка</h1>
+                    <Spinner/>
+                </div>
+            )
+        }
+        else if (!navigator.geolocation) {
+            return (
+                <h1>Ваш браузер не поддерживает геолокацию</h1>
+            )
+        }
+        else  {
+            return (
+                <div className="container">
+                    <h1 className="alert">Пожалуйста, предоставьте геоданные</h1>
                     <Spinner/>
                 </div>
             )

@@ -4,7 +4,7 @@ import './weather-page.css';
 const WeatherPage = (weather) => {
     
     const data = weather.weather;
-    const imageSrc = require(`../../icons/${data.weather[0].icon}.png`);
+    const imageSrc = require(`../../../icons/${data.weather[0].icon}.png`);
     
     
     const kelvin = 273.15;
