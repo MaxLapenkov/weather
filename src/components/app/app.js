@@ -46,7 +46,7 @@ export default class App extends Component {
     }
     render() {
         const { weather, wiki, loading } = this.state
-        if(weather && wiki && navigator.geolocation) {
+        if(weather && wiki) {
             return(
                 <ErrorBoundary>
                     <Router>
