@@ -31,10 +31,10 @@ export default class TimePage extends Component {
     render() {
         const { date } = this.state;
         return (
-            <header>
-                <h1 className="visually-hidden">Погода в вашем регионе:</h1>
-                <h2 className="date">Сегодня {date}</h2>
-            </header>
+            <section>
+                <h1 className="visually-hidden">Текущее время</h1>
+                <p className="date">Сегодня {date}</p>
+            </section>
         )
     }   
 }

@@ -4,8 +4,8 @@ import './header.css';
 const Header = () => {
     
     return (
-        <header>
-            <nav className="menu">
+        <header className="header">
+            <nav className="header__menu menu">
                 <Link className="menu__link" to="/weather/time">Время</Link>
                 <Link className="menu__link" to="/weather/location">Город</Link>
                 <Link className="menu__link" to="/weather/current">Погода</Link>

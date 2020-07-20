@@ -28,22 +28,23 @@ const WeatherPage = (weather) => {
 
     
     return (
-    <main>
-        <h2 className="city">{data.name}</h2>
-        <p className="desc">{data.weather[0].description}</p>
-        <div className="row">
-            <div className="col">
-                <p className="temper">Температура: <br/> {Math.round(data.main.temp - kelvin)} 	&#176;C</p>
-                <p className="temper">Ощущается как: <br/> {Math.round(data.main.feels_like - kelvin)} 	&#176;C</p>
+    <section className="weather">
+        <h1 className="visually-hidden">Погода в вашем регионе</h1>
+        <h2 className="weather__city">{data.name}</h2>
+        <p className="weather__desc">{data.weather[0].description}</p>
+        <div className="weather__row">
+            <div className="weather__col">
+                <p className="weather__temper">Температура: <br/> {Math.round(data.main.temp - kelvin)} 	&#176;C</p>
+                <p className="weather__temper">Ощущается как: <br/> {Math.round(data.main.feels_like - kelvin)} 	&#176;C</p>
             </div>
             <img src={imageSrc} alt="Картинка погоды" width="200" height="200"/>
         </div>
-        <div className="col">
+        <div className="weather__col">
                 <p>Давление: {Math.round(data.main.pressure * 0.750062)} миллиметров ртутного столба</p>
                 <p>Влажность: {data.main.humidity} %</p>
                 <p>Ветер {wind} {data.wind.speed} м/с</p>
             </div>     
-    </main>
+    </section>
     
 )
 }

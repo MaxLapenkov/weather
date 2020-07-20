@@ -4,6 +4,7 @@ import WeatherService from '../../services/weather-service';
 import WikiService from '../../services/wiki-service';
 import WeatherPage from '../weather-page';
 import TimePage from '../time-page';
+import LocationPage from '../location-page';
 import Header from '../header';
 import Spinner from '../spinner';
 import ErrorBoundary from '../error-boundary';
@@ -40,10 +41,10 @@ export default class App extends Component {
     state = {
         weather: undefined,
         wiki: undefined,
-        loading: true
     }
     render() {
-        if(this.state.weather && navigator) {
+        const { weather, wiki } = this.state
+        if(weather && wiki) {
             return(
                 <ErrorBoundary>
                     <Router>
@@ -58,6 +59,9 @@ export default class App extends Component {
                                     path="/weather/current"
                                     render={() => <WeatherPage weather={this.state.weather}/>}/>
                                 <Route path="/weather/time" component={TimePage}/>
+                                <Route
+                                    path="/weather/location"
+                                    render={() => <LocationPage city={weather.name} info={wiki}/>}/>
                             </Switch>
                         </div>
                     </Router>
@@ -66,7 +70,7 @@ export default class App extends Component {
         } else  {
             return (
                 <div className="container">
-                    <h1 className="alert">Пожалуйста, предоставьте данные о своём местоположении</h1>
+                    <h1 className="alert">Идет загрузка</h1>
                     <Spinner/>
                 </div>
             )
