@@ -1,6 +1,23 @@
 header {
     text-align: center;
+    margin-bottom: 20px;
+    margin-top: 20px;
 }
-.date {
-    font-size: 40px;
+.menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.menu__link {
+    transition: 0.5s;
+    text-decoration: none;
+    color: inherit;
+    border:  1px solid white;
+    border-radius: 5px;
+    padding: 5px 15px;
+}
+.menu__link:hover {
+    transition: 0.5s;
+    background-color: white;
+    color: black;
 }

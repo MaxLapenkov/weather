@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
+import { BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import WeatherService from '../../services/weather-service';
 import WikiService from '../../services/wiki-service';
-import MainPage from '../main-page';
+import WeatherPage from '../weather-page';
 import TimePage from '../time-page';
 import Header from '../header';
 import Spinner from '../spinner';
@@ -29,35 +30,46 @@ export default class App extends Component {
         navigator.geolocation.getCurrentPosition((position) => {
             const latitude = position.coords.latitude;
             const longitude = position.coords.longitude;
+            if(latitude.length > 0 && longitude.length > 0) {
+                this.setState({loading: false})
+            }
             this.getInfo(latitude, longitude);
           })
           
     }
     state = {
         weather: undefined,
-        wiki: undefined
+        wiki: undefined,
+        loading: true
     }
     render() {
-        console.log(this.state.wiki);
-
-        if(this.state.weather) {
-            console.log(this.state.weather.name);
+        if(this.state.weather && navigator) {
             return(
-                <div className="container">
-                    <TimePage/>
-                    {/* <Header/> */}
-                    <ErrorBoundary>
-                        <MainPage weather={this.state.weather}/>
-                    </ErrorBoundary>
-                </div>
+                <ErrorBoundary>
+                    <Router>
+                        <div className="container">
+                            <Header/>
+                            <Switch>
+                                <Route 
+                                    path="/weather"
+                                    render ={() => <h1 style={{textAlign: 'center'}}>Добро пожаловать в приложение Weather</h1>}
+                                    exact/>
+                                <Route
+                                    path="/weather/current"
+                                    render={() => <WeatherPage weather={this.state.weather}/>}/>
+                                <Route path="/weather/time" component={TimePage}/>
+                            </Switch>
+                        </div>
+                    </Router>
+                </ErrorBoundary>
             )
-        } else {
+        } else  {
             return (
                 <div className="container">
                     <h1 className="alert">Пожалуйста, предоставьте данные о своём местоположении</h1>
                     <Spinner/>
                 </div>
             )
-        }   
+        } 
     }
 }

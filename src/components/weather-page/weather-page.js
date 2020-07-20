@@ -1,7 +1,7 @@
 import React from 'react';
-import './main-page.css';
+import './weather-page.css';
 
-const MainPage = (weather) => {
+const WeatherPage = (weather) => {
     
     const data = weather.weather;
     const imageSrc = require(`../../icons/${data.weather[0].icon}.png`);
@@ -47,4 +47,4 @@ const MainPage = (weather) => {
     
 )
 }
-export default MainPage
+export default WeatherPage
