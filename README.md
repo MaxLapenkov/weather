@@ -15,3 +15,5 @@ Weather - SPA на React
 
 При возникновении ошибок вызывается индикатор ошибки,
 Во время загрузки отображается индикатор загрузки.
+
+gh-pages: https://maxlapenkov.github.io/weather/
