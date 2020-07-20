@@ -14,6 +14,7 @@ export default class TimePage extends Component {
         date: null
     }
     componentDidMount() {
+        this.tick();
         this.intervalID = setInterval(
             () => this.tick(),
             1000
@@ -35,7 +36,5 @@ export default class TimePage extends Component {
                 <h2 className="date">Сегодня {date}</h2>
             </header>
         )
-    }
-    
-    
+    }   
 }

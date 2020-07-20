@@ -1,4 +1,4 @@
-export default class ApiService {
+export default class WeatherService {
     _apiBase = 'https://api.openweathermap.org/data/2.5/weather';
     apikey = '70e1ed322b02acbc57d443dd91065f3e';
     async getWeather(lat, lon) {
