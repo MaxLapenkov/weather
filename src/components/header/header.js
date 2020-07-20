@@ -8,7 +8,12 @@ const Header = () => {
         timezone: 'UTC',
       };
     let date = new Date();
+    let hrs = date.getHours();
+    let mins = date.getMinutes();
+    let secs = date.getSeconds();
     date = date.toLocaleString("ru", options);
+
+    console.log(hrs, mins, secs);
     return (
         <header>
             <h1 className="visually-hidden">Погода в вашем регионе:</h1>
